@@ -1,7 +1,6 @@
 use lib::fmt;
 
-#[cfg(feature = "std")]
-use std::error::Error as StdError;
+use core::error::Error as StdError;
 
 use self::FastResult::*;
 

@@ -1,4 +1,4 @@
-#![cfg(feature = "std")]
+/*#![cfg(feature = "std")]
 extern crate combine;
 use combine::parser::char::{char, digit, spaces, string};
 use combine::stream::buffered::BufferedStream;
@@ -88,3 +88,4 @@ fn position() {
     assert!(result.is_ok());
     assert_eq!(result.unwrap().1.position(), 2);
 }
+*/

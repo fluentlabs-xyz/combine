@@ -79,8 +79,13 @@
 //! ```
 //!
 //! [`Parser::easy_parse`]: ../parser/trait.Parser.html#method.easy_parse
-use std::error::Error as StdError;
-use std::fmt;
+use alloc::boxed::Box;
+use alloc::string::String;
+use alloc::string::ToString;
+use alloc::vec;
+use alloc::vec::Vec;
+use core::error::Error as StdError;
+use core::fmt;
 
 use error::{FastResult, Info as PrimitiveInfo, StreamError, Tracked};
 use stream::{
@@ -265,13 +270,13 @@ where
         Error::Message(Info::Range(token))
     }
 
-    #[inline]
-    fn other<E>(err: E) -> Self
-    where
-        E: StdError + Send + Sync + 'static,
-    {
-        err.into()
-    }
+    // #[inline]
+    // fn other<E>(err: E) -> Self
+    // where
+    //     E: StdError + Send + Sync + 'static,
+    // {
+    //     err.into()
+    // }
 
     #[inline]
     fn into_other<T>(self) -> T
@@ -632,7 +637,7 @@ impl<I, R, P> Errors<I, R, P> {
         I: PartialEq,
         R: PartialEq,
     {
-        use std::cmp::Ordering;
+        use core::cmp::Ordering;
         // Only keep the errors which occurred after consuming the most amount of data
         match self.position.cmp(&other.position) {
             Ordering::Less => other,

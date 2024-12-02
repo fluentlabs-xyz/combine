@@ -193,6 +193,10 @@
 #![cfg_attr(feature = "cargo-clippy", allow(clippy_lint))]
 #![cfg_attr(not(feature = "std"), no_std)]
 
+extern crate alloc;
+#[cfg(feature = "no-std")]
+extern crate core as other_core;
+
 #[doc(inline)]
 pub use error::{ConsumedResult, ParseError, ParseResult};
 #[doc(inline)]
@@ -746,13 +750,13 @@ macro_rules! forward_parser {
 // Public but hidden to be accessible in macros
 #[doc(hidden)]
 pub mod lib {
-    #[cfg(not(feature = "std"))]
+    // #[cfg(not(feature = "std"))]
     pub use core::*;
-    #[cfg(feature = "std")]
-    pub use std::*;
+    // #[cfg(feature = "std")]
+    // pub use std::*;
 }
 
-#[cfg(feature = "std")]
+// #[cfg(feature = "std")]
 #[doc(inline)]
 pub use stream::easy;
 
@@ -1102,8 +1106,8 @@ mod std_tests {
 
     #[test]
     fn std_error() {
-        use std::error::Error as StdError;
-        use std::fmt;
+        use core::error::Error as StdError;
+        use core::fmt;
         #[derive(Debug)]
         struct Error;
         impl fmt::Display for Error {
@@ -1135,8 +1139,8 @@ mod std_tests {
         // appreciate this.  For technical reasons this is pretty janky; see the discussion in
         // https://github.com/Marwes/combine/issues/86, and excuse the test with significant
         // boilerplate!
-        use std::error::Error as StdError;
-        use std::fmt;
+        use core::error::Error as StdError;
+        use core::fmt;
 
         #[derive(Clone, PartialEq, Debug)]
         struct CloneOnly(String);

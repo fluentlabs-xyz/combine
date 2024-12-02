@@ -6,8 +6,8 @@ use stream::{
     StreamErrorFor, StreamOnce,
 };
 
-#[cfg(feature = "std")]
-use stream::ReadStream;
+// #[cfg(feature = "std")]
+// use stream::ReadStream;
 
 /// Trait for tracking the current position of a `Stream`.
 pub trait Positioner<Item> {
@@ -46,10 +46,10 @@ impl<T> DefaultPositioned for IteratorStream<T> {
     type Positioner = IndexPositioner;
 }
 
-#[cfg(feature = "std")]
-impl<R> DefaultPositioned for ReadStream<R> {
-    type Positioner = IndexPositioner;
-}
+// #[cfg(feature = "std")]
+// impl<R> DefaultPositioned for ReadStream<R> {
+//     type Positioner = IndexPositioner;
+// }
 
 /// The `State<I>` struct maintains the current position in the stream `I` using
 /// the `Positioner` trait to track the position.

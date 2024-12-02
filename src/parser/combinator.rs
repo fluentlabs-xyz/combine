@@ -692,7 +692,7 @@ where
 
 #[cfg(feature = "std")]
 #[derive(Default)]
-pub struct AnyPartialState(Option<Box<::std::any::Any>>);
+pub struct AnyPartialState(Option<Box<::core::any::Any>>);
 
 #[cfg(feature = "std")]
 pub struct AnyPartialStateParser<P>(P);
@@ -788,7 +788,7 @@ where
 
 #[cfg(feature = "std")]
 #[derive(Default)]
-pub struct AnySendPartialState(Option<Box<::std::any::Any + Send>>);
+pub struct AnySendPartialState(Option<Box<::core::any::Any + Send>>);
 
 #[cfg(feature = "std")]
 pub struct AnySendPartialStateParser<P>(P);

@@ -34,8 +34,8 @@
 //! }
 //! ```
 
-use std::iter::FromIterator;
-use std::marker::PhantomData;
+use core::iter::FromIterator;
+use core::marker::PhantomData;
 
 use error::FastResult::*;
 use error::{ConsumedResult, ParseError, StreamError, Tracked};
@@ -118,7 +118,7 @@ where
 mod regex {
     pub extern crate regex;
 
-    use std::iter::FromIterator;
+    use core::iter::FromIterator;
 
     pub use self::regex::*;
 
@@ -221,7 +221,7 @@ mod regex {
 mod regex_1 {
     pub extern crate combine_regex_1 as regex_1;
 
-    use std::iter::FromIterator;
+    use core::iter::FromIterator;
 
     pub use self::regex_1::*;
 

@@ -57,7 +57,7 @@ macro_rules! parse_mode {
         ) -> $crate::error::ConsumedResult<Self::Output, Self::Input> {
             self.parse_mode($crate::parser::FirstMode, input, state)
         }
-    }
+    };
 }
 
 pub mod byte;
@@ -138,7 +138,7 @@ pub trait Parser {
     /// ```
     ///
     /// [`ParseError`]: struct.ParseError.html
-    #[cfg(feature = "std")]
+    // #[cfg(feature = "std")]
     fn easy_parse<I>(&mut self, input: I) -> Result<(Self::Output, I), ::easy::ParseError<I>>
     where
         I: Stream,
@@ -975,7 +975,10 @@ macro_rules! forward_deref {
         }
 
         #[inline(always)]
-        fn add_consumed_expected_error(&mut self, error: &mut Tracked<<Self::Input as StreamOnce>::Error>) {
+        fn add_consumed_expected_error(
+            &mut self,
+            error: &mut Tracked<<Self::Input as StreamOnce>::Error>,
+        ) {
             (**self).add_consumed_expected_error(error)
         }
 
@@ -983,7 +986,7 @@ macro_rules! forward_deref {
         fn parser_count(&self) -> ErrorOffset {
             (**self).parser_count()
         }
-    }
+    };
 }
 
 impl<'a, P> Parser for &'a mut P

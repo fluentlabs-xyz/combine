@@ -14,10 +14,10 @@
 use lib::fmt;
 use lib::str::Chars;
 
-#[cfg(feature = "std")]
-use std::io::{Bytes, Read};
+// #[cfg(feature = "std")]
+// use std::io::{Bytes, Read};
 
-#[cfg(feature = "std")]
+// #[cfg(feature = "std")]
 use stream::easy::Errors;
 
 use Parser;
@@ -46,9 +46,9 @@ macro_rules! clone_resetable {
     }
 }
 
-#[cfg(feature = "std")]
-pub mod buffered;
-#[cfg(feature = "std")]
+// #[cfg(feature = "std")]
+// pub mod buffered;
+// #[cfg(feature = "std")]
 pub mod easy;
 /// Stateful stream wrappers.
 pub mod state;
@@ -888,7 +888,7 @@ where
     }
 }
 
-#[cfg(feature = "std")]
+/*#[cfg(feature = "std")]
 pub struct ReadStream<R> {
     bytes: Bytes<R>,
 }
@@ -944,7 +944,7 @@ where
             bytes: read.bytes(),
         }
     }
-}
+}*/
 
 /// Newtype around a pointer offset into a slice stream (`&[T]`/`&str`).
 #[derive(Clone, Copy, Debug, Default, Eq, PartialEq, Ord, PartialOrd)]

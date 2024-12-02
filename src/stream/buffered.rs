@@ -1,6 +1,5 @@
-use std::collections::VecDeque;
-
 use error::StreamError;
+use std::collections::VecDeque;
 use stream::{Positioned, Resetable, StreamErrorFor, StreamOnce};
 
 /// `Stream` which buffers items from an instance of `StreamOnce` into a ring buffer.
